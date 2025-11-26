@@ -24,7 +24,7 @@ import FactCheckIcon from '@mui/icons-material/FactCheck';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import RouteIcon from '@mui/icons-material/Route';
 import NoCrashIcon from '@mui/icons-material/NoCrash';
-
+import TodayIcon from '@mui/icons-material/Today';
 export default function Nav() {
     const {pathname} = useLocation();
     const navigate = useNavigate()
@@ -89,6 +89,19 @@ export default function Nav() {
                                         <div className={'nav-item'}>
                                             <div className={'nav-item-name '}><GridViewIcon></GridViewIcon>
                                                 Dashboard
+                                            </div>
+                                        </div>
+                                    </li>
+                                </NavLink> : ''
+                        }
+                        {
+                            currentUser.roles.includes('view_schedule') ?
+                                <NavLink className={'nav-link menu-parent'} isActive={true} to={'schedule'}
+                                         onClick={isMobile ? touchMenu : ''}>
+                                    <li>
+                                        <div className={'nav-item'}>
+                                            <div className={'nav-item-name '}><TodayIcon></TodayIcon>
+                                                Lịch hẹn
                                             </div>
                                         </div>
                                     </li>

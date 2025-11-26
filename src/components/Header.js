@@ -23,6 +23,7 @@ import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import ClassIcon from '@mui/icons-material/Class';
 import RouteIcon from '@mui/icons-material/Route';
+import TodayIcon from '@mui/icons-material/Today';
 
 const Header = () => {
     const {pathname} = useLocation();
@@ -221,6 +222,30 @@ const Header = () => {
                     <div className={'header-breadcrumb'}><CorporateFareIcon
                         style={{marginRight: '5px', color: "#F16F21"}}/>
                         <NavLink to={'/organization'}>Cơ cấu tổ chức</NavLink>
+                    </div>
+                )
+                break;
+            case '/schedule/create':
+                setTitle(
+                    <div className={'header-breadcrumb'}><TodayIcon
+                        style={{marginRight: '5px', color: "#F16F21"}}/>
+                        <NavLink to={'/schedule'}>Quản lý lịch hẹn </NavLink>&ensp;/&ensp;Thêm mới
+                    </div>
+                )
+                break;
+            case '/schedule/update':
+                setTitle(
+                    <div className={'header-breadcrumb'}><TodayIcon
+                        style={{marginRight: '5px', color: "#F16F21"}}/>
+                        <NavLink to={'/schedule'}>Quản lý lịch hẹn </NavLink>&ensp;/&ensp;Cập nhật
+                    </div>
+                )
+                break;
+            case '/schedule':
+                setTitle(
+                    <div className={'header-breadcrumb'}><TodayIcon
+                        style={{marginRight: '5px', color: "#F16F21"}}/>
+                        <NavLink to={'/schedule'}>Quản lý lịch hẹn</NavLink>
                     </div>
                 )
                 break;

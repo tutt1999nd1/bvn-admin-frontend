@@ -16,6 +16,7 @@ export default function CategoryEdit(props) {
     const [info, setInfo] = useState({
         "id": 0,
         "name": "",
+        "code": "",
         "description": "",
     },)
     const {isUpdate,type} = props
@@ -131,6 +132,22 @@ export default function CategoryEdit(props) {
                                                 onChange={handleChange}
                                                 error={touched.name && Boolean(errors.name)}
                                                 helperText={touched.name && errors.name}
+
+                                            />
+                                        </Grid>
+                                        <Grid item xs={6} md={6}>
+                                            <div className={'label-input'}>Mã
+                                                <span className={'error-message'}>*</span></div>
+                                            <TextField
+                                                size={"small"}
+                                                id='code'
+                                                name='code'
+                                                className={'formik-input'}
+                                                // variant="standard"
+                                                value={values.code}
+                                                onChange={handleChange}
+                                                error={touched.code && Boolean(errors.code)}
+                                                helperText={touched.code && errors.code}
 
                                             />
                                         </Grid>

@@ -207,7 +207,7 @@ export default function ModalDetail(props) {
                                             <div className={'row-detail'}>
                                                 <div className={'row-detail-label'}>Công chứng viên:</div>
                                                 <div className={'row-detail-info'}>
-                                                    {info.notary?info.notary.name:""}
+                                                    {info.notary?info.notary.fullname:""}
                                                 </div>
                                             </div>
                                         </Grid>

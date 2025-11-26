@@ -92,7 +92,9 @@ export default function SchedulePage(props) {
     })
     const defaultSearch = {
         name: "",
+        secretary: "",
         customerName: "",
+        createBy: "",
         documentTypeName: "",
         documentTypeId: "",
         scheduleStatusId: "",
@@ -146,7 +148,7 @@ export default function SchedulePage(props) {
     }, [timeSearch])
     useEffect(() => {
         submitSearch()
-    }, [objectSearch.methodId, objectSearch.partnerId, objectSearch.projectModelId, objectSearch.projectStatusId, objectSearch.supplierId, isRefresh])
+    }, [objectSearch.scheduleStatusId, isRefresh])
 
 
 
@@ -165,8 +167,12 @@ export default function SchedulePage(props) {
         searchApi({
             id: checkColumnVisible("id") ? objectSearch.id != "" ? objectSearch.id : null : null,
             name: checkColumnVisible("name") ? objectSearch.name != "" ? objectSearch.name : null : null,
+            referralSource: checkColumnVisible("referralSource") ? objectSearch.referralSource != "" ? objectSearch.referralSource : null : null,
             notary: checkColumnVisible("notary") ? objectSearch.notary != "" ? objectSearch.notary : null : null,
+            secretary: checkColumnVisible("secretary") ? objectSearch.secretary != "" ? objectSearch.secretary : null : null,
+            createBy: checkColumnVisible("createBy") ? objectSearch.createBy != "" ? objectSearch.createBy : null : null,
             customerName: checkColumnVisible("customerName") ? objectSearch.customerName != "" ? objectSearch.customerName : null : null,
+            scheduleStatusId: checkColumnVisible("scheduleStatus") ? objectSearch.scheduleStatusId != "" ? objectSearch.scheduleStatusId : null : null,
             startDate: timeSearch.start != null ? timeSearch.start : null,
             endDate: timeSearch.end != null ? timeSearch.end : null,
             pageSize: limitOfPage,
@@ -183,6 +189,8 @@ export default function SchedulePage(props) {
                     // result[i].createdBy = result[i].createdBy?.name || ""
                     result[i].documentType = result[i].documentType?.name || ""
                     result[i].notary = result[i].notary?.fullName || ""
+                    result[i].createBy = result[i].createBy?.fullName || ""
+                    result[i].secretary = result[i].secretary?.fullName || ""
                     result[i].scheduleStatus = result[i].scheduleStatus?.name || ""
                     result[i].date = result[i].date ? moment(result[i].date).format('HH:mm DD-MM-YYYY') : "";
 
@@ -271,16 +279,68 @@ export default function SchedulePage(props) {
 
             )
         }
-        else if (code == "code") {
+        else if (code == "createBy") {
             return (
                 <TableCell className={"filter-table"} style={{minWidth: '150px', top: 41}}>
                     <div>
                         <TextField
                             size={"small"}
                             fullWidth
-                            value={objectSearch.code}
+                            value={objectSearch.createBy}
                             onChange={(e) => {
-                                setObjectSearch({...objectSearch, code: e.target.value})
+                                setObjectSearch({...objectSearch, createBy: e.target.value})
+                            }}
+                            onKeyDown={(event) => {
+                                if (event.key === 'Enter') {
+                                    submitSearch()
+                                }
+                            }}
+                            onBlur={(e) => {
+                                submitSearch()
+                            }}
+                        />
+                    </div>
+
+                </TableCell>
+
+            )
+        }
+        else if (code == "secretary") {
+            return (
+                <TableCell className={"filter-table"} style={{minWidth: '150px', top: 41}}>
+                    <div>
+                        <TextField
+                            size={"small"}
+                            fullWidth
+                            value={objectSearch.secretary}
+                            onChange={(e) => {
+                                setObjectSearch({...objectSearch, secretary: e.target.value})
+                            }}
+                            onKeyDown={(event) => {
+                                if (event.key === 'Enter') {
+                                    submitSearch()
+                                }
+                            }}
+                            onBlur={(e) => {
+                                submitSearch()
+                            }}
+                        />
+                    </div>
+
+                </TableCell>
+
+            )
+        }
+        else if (code == "referralSource") {
+            return (
+                <TableCell className={"filter-table"} style={{minWidth: '150px', top: 41}}>
+                    <div>
+                        <TextField
+                            size={"small"}
+                            fullWidth
+                            value={objectSearch.referralSource}
+                            onChange={(e) => {
+                                setObjectSearch({...objectSearch, referralSource: e.target.value})
                             }}
                             onKeyDown={(event) => {
                                 if (event.key === 'Enter') {
@@ -633,58 +693,136 @@ export default function SchedulePage(props) {
 
                             </div>
                             <Divider></Divider>
+                            <div className={'info-sum-table'}>
+                                <div>
+                                    <div className={'sum-table'}>
+                                        <div className={'flex'}>
+                                            <div className={'sum-table-label'}>
+                                               Phí công chứng:&ensp;
+                                            </div>
+                                            <div className={'sum-table-amount'}>
+                                                {currencyFormatter(3000000)}&ensp;VNĐ
+                                            </div>
+                                        </div>
+                                        <div className={'flex'}>
+                                            <div className={'sum-table-label'}>
+                                                Phí sao y:&ensp;
+                                            </div>
+                                            <div className={'sum-table-amount'}>
+                                                {currencyFormatter(0)}&ensp;VNĐ
+                                            </div>
+                                        </div>
+                                        <div className={'flex'}>
+                                            <div className={'sum-table-label'}>
+                                                Phí di chuyển:&ensp;
+                                            </div>
+                                            <div className={'sum-table-amount'}>
+                                                {currencyFormatter(0)}&ensp;VNĐ
+                                            </div>
+                                        </div>    <div className={'flex'}>
+                                            <div className={'sum-table-label'}>
+                                                Phí thu hộ:&ensp;
+                                            </div>
+                                            <div className={'sum-table-amount'}>
+                                                {currencyFormatter(0)}&ensp;VNĐ
+                                            </div>
+                                        </div>
 
-                            <div className={'table-content-title'}
-                                 style={{height: '40px', marginTop: '10px', marginBottom: '0px'}}>
-                                Danh sách lịch hẹn
-                                <div style={{
-                                    marginRight: '15px',
-                                    paddingBottom: '5px',
-                                    display: "flex",
-                                    justifyContent: 'center',
-                                    alignItems: 'center'
-                                }}>
-                                    <div style={{display: 'flex', alignItems: 'center'}}>
-                                        {
-                                            // currentUser.roles.includes("export_project") ?
-                                            //     <div>
-                                            //         <Button onClick={()=>{if(!loadingExport)exportExcel()}} style={{marginLeft: '10px', marginRight: '10px'}}
-                                            //                 variant="outlined"
-                                            //                 startIcon={<VerticalAlignBottomIcon/>}>{loadingExport?<CircularProgress size={20}></CircularProgress>:"Xuất Excel"}</Button>
-                                            //     </div>
-                                            //     : ""
-                                        }
-                                        {
-                                            currentUser.roles.includes("create_schedule") ?
-                                                <Button style={{marginRight: "5px"}} onClick={() => {
-                                                    navigate(`${pathname}/create`)
-                                                }} variant={'outlined'}>Thêm mới</Button> : ""
-                                        }
-
-                                        <Tooltip title={"Cài đặt hiển thị"} arrow disableInteractive>
-                                            <SettingsIcon onClick={handleClickNotification}/>
-
-                                        </Tooltip>
-                                        <Menu
-                                            id="icon-notification"
-                                            anchorEl={anchorElSettingTable}
-                                            open={openSettingTable}
-                                            onClose={handleCloseNotification}
-                                            MenuListProps={{
-                                                'aria-labelledby': 'basic-button',
-                                            }}>
-                                            <SettingColumnTable
-                                                tableName={'manageProject'}
-                                                columns={columns}
-                                                isRefreshConfigTable={isRefreshConfigTable}
-                                                setIsRefreshConfigTable={setIsRefreshConfigTable}>
-                                            </SettingColumnTable>
-
-                                        </Menu>
                                     </div>
+                                </div>
+                                <div style={{display:'flex',alignItems:'center'}}>
+                                    {
+                                        currentUser.roles.includes("create_schedule") ?
+                                            <div>
+                                                <Button onClick={()=>{
+                                                    if(!loadingExport){
+                                                        // exportExcel()
+                                                    }}
+                                                } style={{marginLeft: '10px', marginRight: '10px'}}
+                                                        variant="outlined"
+                                                        startIcon={<VerticalAlignBottomIcon/>}>{loadingExport?<CircularProgress size={20}></CircularProgress>:"Xuất Excel"}</Button>
+                                            </div>
+                                            : ""
+                                    }
+                                    {           currentUser.roles.includes("create_schedule") ?
+                                                        <Button style={{marginRight: "5px"}} onClick={() => {
+                                                            navigate(`${pathname}/create`)
+                                                        }} variant={'outlined'}>Thêm mới</Button> : ""
+                                                }
+                                    <Tooltip title={"Cài đặt hiển thị"} arrow disableInteractive>
+                                        <SettingsIcon onClick={handleClickNotification}/>
+
+                                    </Tooltip>
+                                    <Menu
+                                        id="icon-notification"
+                                        anchorEl={anchorElSettingTable}
+                                        open={openSettingTable}
+                                        onClose={handleCloseNotification}
+                                        MenuListProps={{
+                                            'aria-labelledby': 'basic-button',
+                                        }}>
+                                        <SettingColumnTable
+                                            tableName={'project'}
+                                            columns={columns}
+                                            isRefreshConfigTable={isRefreshConfigTable}
+                                            setIsRefreshConfigTable={setIsRefreshConfigTable}>
+                                        </SettingColumnTable>
+
+                                    </Menu>
                                 </div>
 
                             </div>
+                            {/*<div className={'table-content-title'}*/}
+                            {/*     style={{height: '40px', marginTop: '10px', marginBottom: '0px'}}>*/}
+                            {/*    Danh sách lịch hẹn*/}
+                            {/*    <div style={{*/}
+                            {/*        marginRight: '15px',*/}
+                            {/*        paddingBottom: '5px',*/}
+                            {/*        display: "flex",*/}
+                            {/*        justifyContent: 'center',*/}
+                            {/*        alignItems: 'center'*/}
+                            {/*    }}>*/}
+                            {/*        <div style={{display: 'flex', alignItems: 'center'}}>*/}
+                            {/*            {*/}
+                            {/*                // currentUser.roles.includes("export_project") ?*/}
+                            {/*                //     <div>*/}
+                            {/*                //         <Button onClick={()=>{if(!loadingExport)exportExcel()}} style={{marginLeft: '10px', marginRight: '10px'}}*/}
+                            {/*                //                 variant="outlined"*/}
+                            {/*                //                 startIcon={<VerticalAlignBottomIcon/>}>{loadingExport?<CircularProgress size={20}></CircularProgress>:"Xuất Excel"}</Button>*/}
+                            {/*                //     </div>*/}
+                            {/*                //     : ""*/}
+                            {/*            }*/}
+                            {/*            {*/}
+                            {/*                currentUser.roles.includes("create_schedule") ?*/}
+                            {/*                    <Button style={{marginRight: "5px"}} onClick={() => {*/}
+                            {/*                        navigate(`${pathname}/create`)*/}
+                            {/*                    }} variant={'outlined'}>Thêm mới</Button> : ""*/}
+                            {/*            }*/}
+
+                            {/*            <Tooltip title={"Cài đặt hiển thị"} arrow disableInteractive>*/}
+                            {/*                <SettingsIcon onClick={handleClickNotification}/>*/}
+
+                            {/*            </Tooltip>*/}
+                            {/*            <Menu*/}
+                            {/*                id="icon-notification"*/}
+                            {/*                anchorEl={anchorElSettingTable}*/}
+                            {/*                open={openSettingTable}*/}
+                            {/*                onClose={handleCloseNotification}*/}
+                            {/*                MenuListProps={{*/}
+                            {/*                    'aria-labelledby': 'basic-button',*/}
+                            {/*                }}>*/}
+                            {/*                <SettingColumnTable*/}
+                            {/*                    tableName={'manageProject'}*/}
+                            {/*                    columns={columns}*/}
+                            {/*                    isRefreshConfigTable={isRefreshConfigTable}*/}
+                            {/*                    setIsRefreshConfigTable={setIsRefreshConfigTable}>*/}
+                            {/*                </SettingColumnTable>*/}
+
+                            {/*            </Menu>*/}
+                            {/*        </div>*/}
+                            {/*    </div>*/}
+
+                            {/*</div>*/}
 
 
                             <div style={{position: 'relative'}}>

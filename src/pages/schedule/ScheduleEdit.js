@@ -39,6 +39,10 @@ export default function ScheduleEdit(props) {
             id: "",
             name: ""
         },
+        "secretary": {
+            id: "",
+            name: ""
+        },
         "documentType": {
             id: "",
             code: ""
@@ -164,6 +168,8 @@ export default function ScheduleEdit(props) {
                         "documentTypeName": info.documentType?.name||"",
                         "notaryId": info.notary?.id||"",
                         "notaryName": info.notary?.fullName||"",
+                        "secretaryId": info.secretary?.id||"",
+                        "secretaryName": info.secretary?.fullName||"",
 
 
 
@@ -216,7 +222,7 @@ export default function ScheduleEdit(props) {
                                                         <div className={'label-input'}>Tên khách hàng
                                                             <span className={'error-message'}>*</span>
                                                         </div>
-                                                        <div className={'row-input-field'}>
+                                                        <div className= {'row-input-field'}>
                                                             <TextField
                                                                 size={"small"}
                                                                 id='customerName'
@@ -233,7 +239,7 @@ export default function ScheduleEdit(props) {
                                                 </Grid>
                                                 <Grid item md={6}>
                                                     <div className={'row-input'}>
-                                                        <div className={'label-input'}>Người giới thiệu
+                                                        <div className={'label-input'}>Nguồn việc
                                                             {/*<span className={'error-message'}>*</span>*/}
                                                         </div>
                                                         <div className={'row-input-field'}>
@@ -251,133 +257,133 @@ export default function ScheduleEdit(props) {
                                                         </div>
                                                     </div>
                                                 </Grid>
-                                                <Grid item md={6}>
-                                                    <div className={'row-input'}>
-                                                        <div className={'label-input'}>Phí công chứng
-                                                            {/*<span className={'error-message'}>*</span>*/}
-                                                        </div>
-                                                        <div className={'row-input-field'}>
-                                                            <NumericFormat
-                                                                id='feesNotary'
-                                                                name='feesNotary'
-                                                                className={'formik-input text-right'}
-                                                                size={"small"}
-                                                                value={values.feesNotary}
-                                                                customInput={TextField}
-                                                                error={touched.feesNotary && Boolean(errors.feesNotary)}
-                                                                helperText={touched.feesNotary && errors.feesNotary}
-                                                                InputProps={{
-                                                                    endAdornment: <InputAdornment position="end">VNĐ</InputAdornment>,
-                                                                }}
-                                                                thousandSeparator={"."}
-                                                                decimalSeparator={","}
-                                                                onValueChange={(values) => {
-                                                                    const {formattedValue, value, floatValue} = values;
-                                                                    const re = /^[0-9\b]+$/;
-                                                                    if (re.test(floatValue)) {
-                                                                        setFieldValue('feesNotary', floatValue)
-                                                                    }
-                                                                }}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </Grid>
-                                                <Grid item md={6}>
-                                                    <div className={'row-input'}>
-                                                        <div className={'label-input'}>Phí di chuyển
-                                                            {/*<span className={'error-message'}>*</span>*/}
-                                                        </div>
-                                                        <div className={'row-input-field'}>
-                                                            <NumericFormat
-                                                                id='feesTransportation'
-                                                                name='feesTransportation'
-                                                                className={'formik-input text-right'}
-                                                                size={"small"}
-                                                                value={values.feesTransportation}
-                                                                customInput={TextField}
-                                                                error={touched.feesTransportation && Boolean(errors.feesTransportation)}
-                                                                helperText={touched.feesTransportation && errors.feesTransportation}
-                                                                InputProps={{
-                                                                    endAdornment: <InputAdornment position="end">VNĐ</InputAdornment>,
+                                                {/*<Grid item md={6}>*/}
+                                                {/*    <div className={'row-input'}>*/}
+                                                {/*        <div className={'label-input'}>Phí công chứng*/}
+                                                {/*            /!*<span className={'error-message'}>*</span>*!/*/}
+                                                {/*        </div>*/}
+                                                {/*        <div className={'row-input-field'}>*/}
+                                                {/*            <NumericFormat*/}
+                                                {/*                id='feesNotary'*/}
+                                                {/*                name='feesNotary'*/}
+                                                {/*                className={'formik-input text-right'}*/}
+                                                {/*                size={"small"}*/}
+                                                {/*                value={values.feesNotary}*/}
+                                                {/*                customInput={TextField}*/}
+                                                {/*                error={touched.feesNotary && Boolean(errors.feesNotary)}*/}
+                                                {/*                helperText={touched.feesNotary && errors.feesNotary}*/}
+                                                {/*                InputProps={{*/}
+                                                {/*                    endAdornment: <InputAdornment position="end">VNĐ</InputAdornment>,*/}
+                                                {/*                }}*/}
+                                                {/*                thousandSeparator={"."}*/}
+                                                {/*                decimalSeparator={","}*/}
+                                                {/*                onValueChange={(values) => {*/}
+                                                {/*                    const {formattedValue, value, floatValue} = values;*/}
+                                                {/*                    const re = /^[0-9\b]+$/;*/}
+                                                {/*                    if (re.test(floatValue)) {*/}
+                                                {/*                        setFieldValue('feesNotary', floatValue)*/}
+                                                {/*                    }*/}
+                                                {/*                }}*/}
+                                                {/*            />*/}
+                                                {/*        </div>*/}
+                                                {/*    </div>*/}
+                                                {/*</Grid>*/}
+                                                {/*<Grid item md={6}>*/}
+                                                {/*    <div className={'row-input'}>*/}
+                                                {/*        <div className={'label-input'}>Phí di chuyển*/}
+                                                {/*            /!*<span className={'error-message'}>*</span>*!/*/}
+                                                {/*        </div>*/}
+                                                {/*        <div className={'row-input-field'}>*/}
+                                                {/*            <NumericFormat*/}
+                                                {/*                id='feesTransportation'*/}
+                                                {/*                name='feesTransportation'*/}
+                                                {/*                className={'formik-input text-right'}*/}
+                                                {/*                size={"small"}*/}
+                                                {/*                value={values.feesTransportation}*/}
+                                                {/*                customInput={TextField}*/}
+                                                {/*                error={touched.feesTransportation && Boolean(errors.feesTransportation)}*/}
+                                                {/*                helperText={touched.feesTransportation && errors.feesTransportation}*/}
+                                                {/*                InputProps={{*/}
+                                                {/*                    endAdornment: <InputAdornment position="end">VNĐ</InputAdornment>,*/}
 
-                                                                }}
-                                                                thousandSeparator={"."}
-                                                                decimalSeparator={","}
-                                                                onValueChange={(values) => {
-                                                                    const {formattedValue, value, floatValue} = values;
-                                                                    const re = /^[0-9\b]+$/;
-                                                                    if (re.test(floatValue)) {
-                                                                        setFieldValue('feesTransportation', floatValue)
-                                                                    }
-                                                                }}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </Grid>
-                                                <Grid item md={6}>
-                                                    <div className={'row-input'}>
-                                                        <div className={'label-input'}>Phí sao y
-                                                            {/*<span className={'error-message'}>*</span>*/}
-                                                        </div>
-                                                        <div className={'row-input-field'}>
-                                                            <NumericFormat
-                                                                id='feesCopy'
-                                                                name='feesCopy'
-                                                                className={'formik-input text-right'}
-                                                                size={"small"}
-                                                                value={values.feesCopy}
-                                                                customInput={TextField}
-                                                                error={touched.feesCopy && Boolean(errors.feesCopy)}
-                                                                helperText={touched.feesCopy && errors.feesCopy}
-                                                                InputProps={{
-                                                                    endAdornment: <InputAdornment position="end">VNĐ</InputAdornment>,
+                                                {/*                }}*/}
+                                                {/*                thousandSeparator={"."}*/}
+                                                {/*                decimalSeparator={","}*/}
+                                                {/*                onValueChange={(values) => {*/}
+                                                {/*                    const {formattedValue, value, floatValue} = values;*/}
+                                                {/*                    const re = /^[0-9\b]+$/;*/}
+                                                {/*                    if (re.test(floatValue)) {*/}
+                                                {/*                        setFieldValue('feesTransportation', floatValue)*/}
+                                                {/*                    }*/}
+                                                {/*                }}*/}
+                                                {/*            />*/}
+                                                {/*        </div>*/}
+                                                {/*    </div>*/}
+                                                {/*</Grid>*/}
+                                                {/*<Grid item md={6}>*/}
+                                                {/*    <div className={'row-input'}>*/}
+                                                {/*        <div className={'label-input'}>Phí sao y*/}
+                                                {/*            /!*<span className={'error-message'}>*</span>*!/*/}
+                                                {/*        </div>*/}
+                                                {/*        <div className={'row-input-field'}>*/}
+                                                {/*            <NumericFormat*/}
+                                                {/*                id='feesCopy'*/}
+                                                {/*                name='feesCopy'*/}
+                                                {/*                className={'formik-input text-right'}*/}
+                                                {/*                size={"small"}*/}
+                                                {/*                value={values.feesCopy}*/}
+                                                {/*                customInput={TextField}*/}
+                                                {/*                error={touched.feesCopy && Boolean(errors.feesCopy)}*/}
+                                                {/*                helperText={touched.feesCopy && errors.feesCopy}*/}
+                                                {/*                InputProps={{*/}
+                                                {/*                    endAdornment: <InputAdornment position="end">VNĐ</InputAdornment>,*/}
 
-                                                                }}
-                                                                thousandSeparator={"."}
-                                                                decimalSeparator={","}
-                                                                onValueChange={(values) => {
-                                                                    const {formattedValue, value, floatValue} = values;
-                                                                    const re = /^[0-9\b]+$/;
-                                                                    if (re.test(floatValue)) {
-                                                                        setFieldValue('feesCopy', floatValue)
-                                                                    }
-                                                                }}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </Grid>
-                                                <Grid item md={6}>
-                                                    <div className={'row-input'}>
-                                                        <div className={'label-input'}>Phí thu hộ
-                                                            {/*<span className={'error-message'}>*</span>*/}
-                                                        </div>
-                                                        <div className={'row-input-field'}>
-                                                            <NumericFormat
-                                                                id='feesCollection'
-                                                                name='feesCollection'
-                                                                className={'formik-input text-right'}
-                                                                size={"small"}
-                                                                value={values.feesCollection}
-                                                                customInput={TextField}
-                                                                error={touched.feesCollection && Boolean(errors.feesCollection)}
-                                                                helperText={touched.feesCollection && errors.feesCollection}
-                                                                InputProps={{
-                                                                    endAdornment: <InputAdornment position="end">VNĐ</InputAdornment>,
+                                                {/*                }}*/}
+                                                {/*                thousandSeparator={"."}*/}
+                                                {/*                decimalSeparator={","}*/}
+                                                {/*                onValueChange={(values) => {*/}
+                                                {/*                    const {formattedValue, value, floatValue} = values;*/}
+                                                {/*                    const re = /^[0-9\b]+$/;*/}
+                                                {/*                    if (re.test(floatValue)) {*/}
+                                                {/*                        setFieldValue('feesCopy', floatValue)*/}
+                                                {/*                    }*/}
+                                                {/*                }}*/}
+                                                {/*            />*/}
+                                                {/*        </div>*/}
+                                                {/*    </div>*/}
+                                                {/*</Grid>*/}
+                                                {/*<Grid item md={6}>*/}
+                                                {/*    <div className={'row-input'}>*/}
+                                                {/*        <div className={'label-input'}>Phí thu hộ*/}
+                                                {/*            /!*<span className={'error-message'}>*</span>*!/*/}
+                                                {/*        </div>*/}
+                                                {/*        <div className={'row-input-field'}>*/}
+                                                {/*            <NumericFormat*/}
+                                                {/*                id='feesCollection'*/}
+                                                {/*                name='feesCollection'*/}
+                                                {/*                className={'formik-input text-right'}*/}
+                                                {/*                size={"small"}*/}
+                                                {/*                value={values.feesCollection}*/}
+                                                {/*                customInput={TextField}*/}
+                                                {/*                error={touched.feesCollection && Boolean(errors.feesCollection)}*/}
+                                                {/*                helperText={touched.feesCollection && errors.feesCollection}*/}
+                                                {/*                InputProps={{*/}
+                                                {/*                    endAdornment: <InputAdornment position="end">VNĐ</InputAdornment>,*/}
 
-                                                                }}
-                                                                thousandSeparator={"."}
-                                                                decimalSeparator={","}
-                                                                onValueChange={(values) => {
-                                                                    const {formattedValue, value, floatValue} = values;
-                                                                    const re = /^[0-9\b]+$/;
-                                                                    if (re.test(floatValue)) {
-                                                                        setFieldValue('feesCollection', floatValue)
-                                                                    }
-                                                                }}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </Grid>
+                                                {/*                }}*/}
+                                                {/*                thousandSeparator={"."}*/}
+                                                {/*                decimalSeparator={","}*/}
+                                                {/*                onValueChange={(values) => {*/}
+                                                {/*                    const {formattedValue, value, floatValue} = values;*/}
+                                                {/*                    const re = /^[0-9\b]+$/;*/}
+                                                {/*                    if (re.test(floatValue)) {*/}
+                                                {/*                        setFieldValue('feesCollection', floatValue)*/}
+                                                {/*                    }*/}
+                                                {/*                }}*/}
+                                                {/*            />*/}
+                                                {/*        </div>*/}
+                                                {/*    </div>*/}
+                                                {/*</Grid>*/}
                                                 <Grid item md={6}>
                                                     <div className={'row-input'}>
                                                         <div className={'label-input'}>Loại việc</div>
@@ -452,7 +458,9 @@ export default function ScheduleEdit(props) {
                                                 </Grid>
                                                 <Grid item md={6}>
                                                     <div className={'row-input'}>
-                                                        <div className={'label-input'}>Công chứng viên</div>
+                                                        <div className={'label-input'}>Công chứng viên
+                                                            <span className={'error-message'}>*</span>
+                                                        </div>
                                                         <div className={'row-input-field'}>
                                                             <Autocomplete
                                                                 disablePortal
@@ -479,6 +487,44 @@ export default function ScheduleEdit(props) {
                                                                     } else {
                                                                         setFieldValue('notaryId', '')
                                                                         setFieldValue('notaryName', '')
+
+                                                                    }
+                                                                }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </Grid>
+                                                <Grid item md={6}>
+                                                    <div className={'row-input'}>
+                                                        <div className={'label-input'}>Thư ký
+                                                            <span className={'error-message'}>*</span>
+                                                        </div>
+                                                        <div className={'row-input-field'}>
+                                                            <Autocomplete
+                                                                disablePortal
+                                                                id="combo-box-demo"
+                                                                options={listUser}
+                                                                value={{
+                                                                    id: values.secretaryId,
+                                                                    label: values.secretaryName
+                                                                }
+                                                                }
+
+                                                                renderInput={(params) => < TextField  {...params}
+                                                                                                      id='secretaryId'
+                                                                                                      name='secretaryId'
+                                                                                                      placeholder=""
+                                                                                                      error={touched.secretaryId && Boolean(errors.secretaryId)}
+                                                                                                      helperText={touched.secretaryId && errors.secretaryId}/>}
+                                                                size={"small"}
+                                                                onChange={(event, newValue) => {
+                                                                    if (newValue) {
+                                                                        setFieldValue('secretaryId', newValue.id)
+                                                                        setFieldValue('secretaryName', newValue.label)
+
+                                                                    } else {
+                                                                        setFieldValue('secretaryId', '')
+                                                                        setFieldValue('secretaryName', '')
 
                                                                     }
                                                                 }}

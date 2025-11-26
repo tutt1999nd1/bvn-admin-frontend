@@ -146,6 +146,7 @@ export default function CategoryPage(props) {
                                 <TableRow>
                                     <TableCell style={{width: '30px'}} align="center">STT</TableCell>
                                     <TableCell>Tên </TableCell>
+                                    <TableCell>Mã</TableCell>
                                     <TableCell>Ghi chú</TableCell>
                                     {
                                         currentUser.roles.includes('edit_category')||currentUser.roles.includes('delete_category')||currentUser.roles.includes('manage_book')?
@@ -170,6 +171,9 @@ export default function CategoryPage(props) {
                                                 </TableCell>
                                                 <TableCell>
                                                     <div>{item.name}</div>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <div>{item.code}</div>
                                                 </TableCell>
                                                 <TableCell>
                                                     <div>{item.description}</div>

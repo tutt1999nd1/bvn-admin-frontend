@@ -2800,3 +2800,13 @@ table .action{
 .wrapper-item-checklist-body{
     padding: 5px 10px;
 }
+.info-sum-table{
+    padding:10px 5px;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+.sum-table .flex{
+    align-items: flex-end;
+    margin-right: 30px;
+}
