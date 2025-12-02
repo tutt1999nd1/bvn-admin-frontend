@@ -762,7 +762,7 @@ export default function SchedulePage(props) {
                                             'aria-labelledby': 'basic-button',
                                         }}>
                                         <SettingColumnTable
-                                            tableName={'project'}
+                                            tableName={'schedule'}
                                             columns={columns}
                                             isRefreshConfigTable={isRefreshConfigTable}
                                             setIsRefreshConfigTable={setIsRefreshConfigTable}>

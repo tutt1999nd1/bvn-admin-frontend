@@ -125,7 +125,7 @@ export const getDefaultConfigTable = (tableName) => {
     }
     else if(tableName=='schedule'){
         let columns = [
-            {index:1,name:"ID",code:"id",visible:false},
+            // {index:1,name:"ID",code:"id",visible:false},
             {index:1,name:"Thời gian",code:"date",visible:true},
             // {index:1,name:"STT",code:"stt",visible:true},
             {index:1,name:"Tên hồ sơ",code:"name",visible:true},
@@ -135,6 +135,7 @@ export const getDefaultConfigTable = (tableName) => {
             {index:1,name:"Thư ký",code:"secretary",visible:true},
             {index:1,name:"Nguồn việc",code:"referralSource",visible:true},
             {index:1,name:"Trạng thái",code:"scheduleStatus",visible:true},
+            {index:1,name:"Số công chứng",code:"scheduleStatus",visible:true},
             {index:1,name:"Địa chỉ",code:"address",visible:true},
             {index:1,name:"Thông tin liên hệ",code:"contact",visible:true},
             {index:1,name:"Phí công chứng",code:"feesNotary",visible:true},

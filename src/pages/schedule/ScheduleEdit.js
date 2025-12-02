@@ -60,6 +60,14 @@ export default function ScheduleEdit(props) {
             .string()
             .trim()
             .required('Không được để trống'),
+        secretaryId: yup
+            .string()
+            .trim()
+            .required('Không được để trống'),
+        notaryId: yup
+            .string()
+            .trim()
+            .required('Không được để trống'),
 
 
 
@@ -199,7 +207,7 @@ export default function ScheduleEdit(props) {
                                             <Grid container spacing={2}>
                                                 <Grid item md={6}>
                                                     <div className={'row-input'}>
-                                                        <div className={'label-input'}>Lịch hẹn
+                                                        <div className={'label-input'}>Tên hồ sơ
                                                             <span className={'error-message'}>*</span>
                                                         </div>
                                                         <div className={'row-input-field'}>
@@ -217,26 +225,26 @@ export default function ScheduleEdit(props) {
                                                         </div>
                                                     </div>
                                                 </Grid>
-                                                <Grid item md={6}>
-                                                    <div className={'row-input'}>
-                                                        <div className={'label-input'}>Tên khách hàng
-                                                            <span className={'error-message'}>*</span>
-                                                        </div>
-                                                        <div className= {'row-input-field'}>
-                                                            <TextField
-                                                                size={"small"}
-                                                                id='customerName'
-                                                                name='customerName'
-                                                                className={'formik-input'}
-                                                                // variant="standard"
-                                                                value={values.customerName}
-                                                                onChange={handleChange}
-                                                                error={touched.customerName && Boolean(errors.customerName)}
-                                                                helperText={touched.customerName && errors.customerName}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </Grid>
+                                                {/*<Grid item md={6}>*/}
+                                                {/*    <div className={'row-input'}>*/}
+                                                {/*        <div className={'label-input'}>Tên khách hàng*/}
+                                                {/*            <span className={'error-message'}>*</span>*/}
+                                                {/*        </div>*/}
+                                                {/*        <div className= {'row-input-field'}>*/}
+                                                {/*            <TextField*/}
+                                                {/*                size={"small"}*/}
+                                                {/*                id='customerName'*/}
+                                                {/*                name='customerName'*/}
+                                                {/*                className={'formik-input'}*/}
+                                                {/*                // variant="standard"*/}
+                                                {/*                value={values.customerName}*/}
+                                                {/*                onChange={handleChange}*/}
+                                                {/*                error={touched.customerName && Boolean(errors.customerName)}*/}
+                                                {/*                helperText={touched.customerName && errors.customerName}*/}
+                                                {/*            />*/}
+                                                {/*        </div>*/}
+                                                {/*    </div>*/}
+                                                {/*</Grid>*/}
                                                 <Grid item md={6}>
                                                     <div className={'row-input'}>
                                                         <div className={'label-input'}>Nguồn việc
@@ -420,42 +428,7 @@ export default function ScheduleEdit(props) {
                                                         </div>
                                                     </div>
                                                 </Grid>
-                                                <Grid item md={6}>
-                                                    <div className={'row-input'}>
-                                                        <div className={'label-input'}>Trạng thái</div>
-                                                        <div className={'row-input-field'}>
-                                                            <Autocomplete
-                                                                disablePortal
-                                                                id="combo-box-demo"
-                                                                options={listScheduleStatus}
-                                                                value={{
-                                                                    id: values.scheduleStatusId,
-                                                                    label: values.scheduleStatusName
-                                                                }
-                                                                }
 
-                                                                renderInput={(params) => < TextField  {...params}
-                                                                                                      id='scheduleStatusId'
-                                                                                                      name='scheduleStatusId'
-                                                                                                      placeholder=""
-                                                                                                      error={touched.scheduleStatusId && Boolean(errors.scheduleStatusId)}
-                                                                                                      helperText={touched.scheduleStatusId && errors.scheduleStatusId}/>}
-                                                                size={"small"}
-                                                                onChange={(event, newValue) => {
-                                                                    if (newValue) {
-                                                                        setFieldValue('scheduleStatusId', newValue.id)
-                                                                        setFieldValue('scheduleStatusName', newValue.label)
-
-                                                                    } else {
-                                                                        setFieldValue('scheduleStatusId', '')
-                                                                        setFieldValue('scheduleStatusName', '')
-
-                                                                    }
-                                                                }}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </Grid>
                                                 <Grid item md={6}>
                                                     <div className={'row-input'}>
                                                         <div className={'label-input'}>Công chứng viên
