@@ -25,6 +25,7 @@ import CategoryPage from "../pages/category/CategoryPage";
 import CategoryEdit from "../pages/category/CategoryEdit";
 import SchedulePage from "../pages/schedule";
 import ScheduleEdit from "../pages/schedule/ScheduleEdit";
+import DashboardPage from "../pages/dashboard/DashboardPage";
 
 
 export default function RenderRoute() {
@@ -58,10 +59,9 @@ export default function RenderRoute() {
                 <Navigate to={`login?redirect=${location.pathname + location.search}`}/>}>
 
                 <Route path="dashboard" element={
-                    // <PrivateRoutes role={'view_dashboard'}>
-                    //     <UserPage/>
-                    // </PrivateRoutes>
-                    <div>error</div>
+                    <PrivateRoutes role={'view_dashboard'}>
+                        <DashboardPage/>
+                    </PrivateRoutes>
                 }/>
                 <Route path="" element={
                     <PrivateRoutes role={'view_dashboard'}>
@@ -185,6 +185,21 @@ export default function RenderRoute() {
                 <Route path="/schedule-status/update" element={
                     <PrivateRoutes role={'view_category'}>
                         <CategoryEdit type="ScheduleStatus" isUpdate={true}/>
+                    </PrivateRoutes>
+                }/>
+                <Route path="/referral-source" element={
+                    <PrivateRoutes role={'view_category'}>
+                        <CategoryPage type="ReferralSource"/>
+                    </PrivateRoutes>
+                }/>
+                <Route path="/referral-source/create" element={
+                    <PrivateRoutes role={'view_category'}>
+                        <CategoryEdit type="ReferralSource" isUpdate={false}/>
+                    </PrivateRoutes>
+                }/>
+                <Route path="/referral-source/update" element={
+                    <PrivateRoutes role={'view_category'}>
+                        <CategoryEdit type="ReferralSource" isUpdate={true}/>
                     </PrivateRoutes>
                 }/>
                 <Route path="/schedule" element={

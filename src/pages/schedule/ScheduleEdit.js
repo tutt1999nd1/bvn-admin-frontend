@@ -20,13 +20,13 @@ export default function ScheduleEdit(props) {
     const [listScheduleStatus, setListScheduleStatus] = useState([]);
     const [listUser, setListUser] = useState([]);
     const [listDocumentType, setListDocumentType] = useState([]);
+    const [listReferralSource, setListReferralSource] = useState([]);
 
 
     const [info, setInfo] = useState({
         "id": 0,
         "name": "",
         "customerName": "",
-        "referralSource": "",
         "date": new dayjs(),
         "feesNotary": "",
         "feesTransportation": "",
@@ -48,6 +48,10 @@ export default function ScheduleEdit(props) {
             code: ""
         },
         "scheduleStatus": {
+            id: "",
+            name: ""
+        },
+        "referralSource": {
             id: "",
             name: ""
         },
@@ -98,6 +102,9 @@ export default function ScheduleEdit(props) {
         })
         getCategoryApi({paging: false, type: "DocumentType"}).then((r) => {
             setListDocumentType(convertToAutoComplete(r.data.responses, 'name'))
+        })
+        getCategoryApi({paging: false, type: "ReferralSource"}).then((r) => {
+            setListReferralSource(convertToAutoComplete(r.data.responses, 'name'))
         })
         getListUserApi({paging: false}).then((r) => {
             setListUser(convertToAutoComplete(r.data.responses, 'fullName'))
@@ -178,6 +185,8 @@ export default function ScheduleEdit(props) {
                         "notaryName": info.notary?.fullName||"",
                         "secretaryId": info.secretary?.id||"",
                         "secretaryName": info.secretary?.fullName||"",
+                        "referralSourceId": info.referralSource?.id||"",
+                        "referralSourceName": info.referralSource?.name||"",
 
 
 
@@ -251,16 +260,34 @@ export default function ScheduleEdit(props) {
                                                             {/*<span className={'error-message'}>*</span>*/}
                                                         </div>
                                                         <div className={'row-input-field'}>
-                                                            <TextField
+                                                            <Autocomplete
+                                                                disablePortal
+                                                                id="combo-box-demo"
+                                                                options={listReferralSource}
+                                                                value={{
+                                                                    id: values.referralSourceId,
+                                                                    label: values.referralSourceName
+                                                                }
+                                                                }
+
+                                                                renderInput={(params) => < TextField  {...params}
+                                                                                                      id='referralSourceId'
+                                                                                                      name='referralSourceId'
+                                                                                                      placeholder=""
+                                                                                                      error={touched.referralSourceId && Boolean(errors.referralSourceId)}
+                                                                                                      helperText={touched.referralSourceId && errors.referralSourceId}/>}
                                                                 size={"small"}
-                                                                id='referralSource'
-                                                                name='referralSource'
-                                                                className={'formik-input'}
-                                                                // variant="standard"
-                                                                value={values.referralSource}
-                                                                onChange={handleChange}
-                                                                error={touched.referralSource && Boolean(errors.referralSource)}
-                                                                helperText={touched.referralSource && errors.referralSource}
+                                                                onChange={(event, newValue) => {
+                                                                    if (newValue) {
+                                                                        setFieldValue('referralSourceId', newValue.id)
+                                                                        setFieldValue('referralSourceName', newValue.label)
+
+                                                                    } else {
+                                                                        setFieldValue('referralSourceId', '')
+                                                                        setFieldValue('referralSourceName', '')
+
+                                                                    }
+                                                                }}
                                                             />
                                                         </div>
                                                     </div>

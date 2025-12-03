@@ -358,6 +358,9 @@ export const getTitleFromCodeCategory = (type) => {
     else if (type == "ScheduleStatus") {
         return "Trạng thái xử lý"
     }
+    else if (type == "ReferralSource") {
+        return "Nguồn việc"
+    }
 }
 export function calculateTotalAmounts(data) {
     function calculateTotalAmount(item) {

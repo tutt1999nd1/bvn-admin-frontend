@@ -24,6 +24,8 @@ import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import ClassIcon from '@mui/icons-material/Class';
 import RouteIcon from '@mui/icons-material/Route';
 import TodayIcon from '@mui/icons-material/Today';
+import {getTitleFromCodeCategory} from "../constants/utils";
+import GridViewIcon from '@mui/icons-material/GridView';
 
 const Header = () => {
     const {pathname} = useLocation();
@@ -148,7 +150,14 @@ const Header = () => {
     useEffect(() => {
 
         switch (pathname) {
-            case '/user':
+            case '/dashboard':
+                setTitle(
+                    <div className={'header-breadcrumb'}><GridViewIcon style={{marginRight: '5px', color: "#F16F21"}}/>
+                        <NavLink to={'/dashboard'}>Dashboard</NavLink>
+                    </div>
+                )
+                break;
+                case '/user':
                 setTitle(
                     <div className={'header-breadcrumb'}><GroupsIcon style={{marginRight: '5px', color: "#F16F21"}}/>
                         <NavLink to={'/user'}>Quản lý người dùng </NavLink>
@@ -246,6 +255,90 @@ const Header = () => {
                     <div className={'header-breadcrumb'}><TodayIcon
                         style={{marginRight: '5px', color: "#F16F21"}}/>
                         <NavLink to={'/schedule'}>Quản lý lịch hẹn</NavLink>
+                    </div>
+                )
+                break;
+            case '/document-type/create':
+                setTitle(
+                    <div className={'header-breadcrumb'}><ClassIcon
+                        style={{marginRight: '5px', color: "#F16F21"}}/>
+                        <NavLink
+                            to={'/document-type'}>{getTitleFromCodeCategory("DocumentType")}</NavLink>&ensp;/&ensp;Thêm
+                        mới
+                    </div>
+                )
+                break;
+            case '/document-type/update':
+                setTitle(
+                    <div className={'header-breadcrumb'}><ClassIcon
+                        style={{marginRight: '5px', color: "#F16F21"}}/>
+                        <NavLink
+                            to={'/document-type'}>{getTitleFromCodeCategory("DocumentType")}</NavLink>&ensp;/&ensp;Cập
+                        nhật
+                    </div>
+                )
+                break;
+            case '/document-type':
+                setTitle(
+                    <div className={'header-breadcrumb'}><ClassIcon
+                        style={{marginRight: '5px', color: "#F16F21"}}/>
+                        <NavLink to={'/document-type'}>{getTitleFromCodeCategory("DocumentType")}</NavLink>
+                    </div>
+                )
+                break;
+            case '/schedule-status/create':
+                setTitle(
+                    <div className={'header-breadcrumb'}><ClassIcon
+                        style={{marginRight: '5px', color: "#F16F21"}}/>
+                        <NavLink
+                            to={'/schedule-status'}>{getTitleFromCodeCategory("ScheduleStatus")}</NavLink>&ensp;/&ensp;Thêm
+                        mới
+                    </div>
+                )
+                break;
+            case '/schedule-status/update':
+                setTitle(
+                    <div className={'header-breadcrumb'}><ClassIcon
+                        style={{marginRight: '5px', color: "#F16F21"}}/>
+                        <NavLink
+                            to={'/schedule-status'}>{getTitleFromCodeCategory("ScheduleStatus")}</NavLink>&ensp;/&ensp;Cập
+                        nhật
+                    </div>
+                )
+                break;
+            case '/schedule-status':
+                setTitle(
+                    <div className={'header-breadcrumb'}><ClassIcon
+                        style={{marginRight: '5px', color: "#F16F21"}}/>
+                        <NavLink to={'/schedule-status'}>{getTitleFromCodeCategory("ScheduleStatus")}</NavLink>
+                    </div>
+                )
+                break;
+                case '/referral-source/create':
+                setTitle(
+                    <div className={'header-breadcrumb'}><ClassIcon
+                        style={{marginRight: '5px', color: "#F16F21"}}/>
+                        <NavLink
+                            to={'/referral-source'}>{getTitleFromCodeCategory("ReferralSource")}</NavLink>&ensp;/&ensp;Thêm
+                        mới
+                    </div>
+                )
+                break;
+            case '/referral-source/update':
+                setTitle(
+                    <div className={'header-breadcrumb'}><ClassIcon
+                        style={{marginRight: '5px', color: "#F16F21"}}/>
+                        <NavLink
+                            to={'/referral-source'}>{getTitleFromCodeCategory("ReferralSource")}</NavLink>&ensp;/&ensp;Cập
+                        nhật
+                    </div>
+                )
+                break;
+            case '/referral-source':
+                setTitle(
+                    <div className={'header-breadcrumb'}><ClassIcon
+                        style={{marginRight: '5px', color: "#F16F21"}}/>
+                        <NavLink to={'/referral-source'}>{getTitleFromCodeCategory("ReferralSource")}</NavLink>
                     </div>
                 )
                 break;

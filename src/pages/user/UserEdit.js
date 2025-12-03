@@ -375,25 +375,25 @@ export default function UserEdit(props) {
                                                 </Select>
                                             </FormControl>
                                         </Grid>
-                                        <Grid item xs={6} md={6}>
-                                            <div className={'label-input'}>Phạm vi truy cập
-                                            </div>
-                                            <TreeSelect
-                                                {...filterOptions}
-                                                filterMode="strict"
-                                                selectionMode="checkbox"
-                                                // filterMode="strict"
-                                                value={selectedNodeKeysPermissionOrganization}
-                                                onChange={(e) => {
-                                                    setSelectedNodeKeysPermissionOrganization(e.value)
-                                                }}
-                                                options={sortTreeData(listOrganizationTree)}
-                                                expandedKeys={expandedKeysOrganization}
-                                                onToggle={(e) => setExpandedKeysOrganization(e.value)}
-                                                style={{width: '100%', zIndex: '1000000 !important', overflow: 'auto'}}
-                                                className="md:w-20rem w-full"
-                                                placeholder=""></TreeSelect>
-                                        </Grid>
+                                        {/*<Grid item xs={6} md={6}>*/}
+                                        {/*    <div className={'label-input'}>Phạm vi truy cập*/}
+                                        {/*    </div>*/}
+                                        {/*    <TreeSelect*/}
+                                        {/*        {...filterOptions}*/}
+                                        {/*        filterMode="strict"*/}
+                                        {/*        selectionMode="checkbox"*/}
+                                        {/*        // filterMode="strict"*/}
+                                        {/*        value={selectedNodeKeysPermissionOrganization}*/}
+                                        {/*        onChange={(e) => {*/}
+                                        {/*            setSelectedNodeKeysPermissionOrganization(e.value)*/}
+                                        {/*        }}*/}
+                                        {/*        options={sortTreeData(listOrganizationTree)}*/}
+                                        {/*        expandedKeys={expandedKeysOrganization}*/}
+                                        {/*        onToggle={(e) => setExpandedKeysOrganization(e.value)}*/}
+                                        {/*        style={{width: '100%', zIndex: '1000000 !important', overflow: 'auto'}}*/}
+                                        {/*        className="md:w-20rem w-full"*/}
+                                        {/*        placeholder=""></TreeSelect>*/}
+                                        {/*</Grid>*/}
 
                                         {
                                             isUpdate?"":   <Grid item xs={6} md={6}>
@@ -413,25 +413,25 @@ export default function UserEdit(props) {
                                                 />
                                             </Grid>
                                         }
-                                        <Grid item xs={6} md={6}>
-                                            <div className={'label-input'}>Phạm vi mượn hồ sơ
-                                            </div>
-                                            <TreeSelect
-                                                {...filterOptions}
-                                                filterMode="strict"
-                                                selectionMode="checkbox"
-                                                // filterMode="strict"
-                                                value={selectedNodeKeysLoanDossier}
-                                                onChange={(e) => {
-                                                    setSelectedNodeKeysLoanDossier(e.value)
-                                                }}
-                                                options={sortTreeData(listOrganizationTree)}
-                                                expandedKeys={expandedKeysOrganization}
-                                                onToggle={(e) => setExpandedKeysOrganization(e.value)}
-                                                style={{width: '100%', zIndex: '1000000 !important', overflow: 'auto'}}
-                                                className="md:w-20rem w-full"
-                                                placeholder=""></TreeSelect>
-                                        </Grid>
+                                        {/*<Grid item xs={6} md={6}>*/}
+                                        {/*    <div className={'label-input'}>Phạm vi mượn hồ sơ*/}
+                                        {/*    </div>*/}
+                                        {/*    <TreeSelect*/}
+                                        {/*        {...filterOptions}*/}
+                                        {/*        filterMode="strict"*/}
+                                        {/*        selectionMode="checkbox"*/}
+                                        {/*        // filterMode="strict"*/}
+                                        {/*        value={selectedNodeKeysLoanDossier}*/}
+                                        {/*        onChange={(e) => {*/}
+                                        {/*            setSelectedNodeKeysLoanDossier(e.value)*/}
+                                        {/*        }}*/}
+                                        {/*        options={sortTreeData(listOrganizationTree)}*/}
+                                        {/*        expandedKeys={expandedKeysOrganization}*/}
+                                        {/*        onToggle={(e) => setExpandedKeysOrganization(e.value)}*/}
+                                        {/*        style={{width: '100%', zIndex: '1000000 !important', overflow: 'auto'}}*/}
+                                        {/*        className="md:w-20rem w-full"*/}
+                                        {/*        placeholder=""></TreeSelect>*/}
+                                        {/*</Grid>*/}
                                         <Grid item xs={6} md={6}>
                                             <div className={'label-input'}>Ghi chú</div>
                                             <TextField

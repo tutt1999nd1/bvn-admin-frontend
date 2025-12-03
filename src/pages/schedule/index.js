@@ -56,7 +56,14 @@ export default function SchedulePage(props) {
     const [listResult, setListResult] = useState([]);
 
     const [listScheduleStatus, setListScheduleStatus] = useState([]);
+    const [listReferralSource, setListReferralSource] = useState([]);
     const [listDocumentType, setListDocumentType] = useState([]);
+    const [totalExpense,setTotalExpense] = useState({
+        feesNotary:0,
+        feesTransportation:0,
+        feesCopy:0,
+        feesCollection:0,
+    })
 
     const currentUser = useSelector(state => state.currentUser)
     const [isRefresh, setIsRefresh] = useState(false)
@@ -92,13 +99,16 @@ export default function SchedulePage(props) {
     })
     const defaultSearch = {
         name: "",
+        certificateNumber: "",
         secretary: "",
         customerName: "",
         createBy: "",
         documentTypeName: "",
         documentTypeId: "",
         scheduleStatusId: "",
-        scheduleStatusName: ""
+        scheduleStatusName: ""   ,
+        referralSourceName: "",
+        referralSourceId: ""
     }
     const [objectSearch, setObjectSearch] = useState(() => {
         // Lấy thông tin từ sessionStorage hoặc sử dụng defaultUser
@@ -148,7 +158,7 @@ export default function SchedulePage(props) {
     }, [timeSearch])
     useEffect(() => {
         submitSearch()
-    }, [objectSearch.scheduleStatusId, isRefresh])
+    }, [objectSearch.scheduleStatusId,objectSearch.documentTypeId,objectSearch.referralSourceId, isRefresh])
 
 
 
@@ -166,13 +176,15 @@ export default function SchedulePage(props) {
         setLoading(true)
         searchApi({
             id: checkColumnVisible("id") ? objectSearch.id != "" ? objectSearch.id : null : null,
+            certificateNumber: checkColumnVisible("certificateNumber") ? objectSearch.certificateNumber != "" ? objectSearch.certificateNumber : null : null,
             name: checkColumnVisible("name") ? objectSearch.name != "" ? objectSearch.name : null : null,
-            referralSource: checkColumnVisible("referralSource") ? objectSearch.referralSource != "" ? objectSearch.referralSource : null : null,
             notary: checkColumnVisible("notary") ? objectSearch.notary != "" ? objectSearch.notary : null : null,
             secretary: checkColumnVisible("secretary") ? objectSearch.secretary != "" ? objectSearch.secretary : null : null,
             createBy: checkColumnVisible("createBy") ? objectSearch.createBy != "" ? objectSearch.createBy : null : null,
             customerName: checkColumnVisible("customerName") ? objectSearch.customerName != "" ? objectSearch.customerName : null : null,
             scheduleStatusId: checkColumnVisible("scheduleStatus") ? objectSearch.scheduleStatusId != "" ? objectSearch.scheduleStatusId : null : null,
+            documentTypeId: checkColumnVisible("documentType") ? objectSearch.documentTypeId != "" ? objectSearch.documentTypeId : null : null,
+            referralSource: checkColumnVisible("referralSource") ? objectSearch.referralSourceId != "" ? objectSearch.referralSourceId : null : null,
             startDate: timeSearch.start != null ? timeSearch.start : null,
             endDate: timeSearch.end != null ? timeSearch.end : null,
             pageSize: limitOfPage,
@@ -192,6 +204,9 @@ export default function SchedulePage(props) {
                     result[i].createBy = result[i].createBy?.fullName || ""
                     result[i].secretary = result[i].secretary?.fullName || ""
                     result[i].scheduleStatus = result[i].scheduleStatus?.name || ""
+                    result[i].referralSource = result[i].referralSource?.name || ""
+                    result[i].certificateNumber = result[i].certificateNumber?.id || ""
+                    result[i].isPaid = result[i].isPaid?'Đã nộp' : "Chưa nộp"
                     result[i].date = result[i].date ? moment(result[i].date).format('HH:mm DD-MM-YYYY') : "";
 
 
@@ -211,7 +226,61 @@ export default function SchedulePage(props) {
 
 
         // TỔNG
+        searchApi({
+            id: checkColumnVisible("id") ? objectSearch.id != "" ? objectSearch.id : null : null,
+            certificateNumber: checkColumnVisible("certificateNumber") ? objectSearch.certificateNumber != "" ? objectSearch.certificateNumber : null : null,
+            name: checkColumnVisible("name") ? objectSearch.name != "" ? objectSearch.name : null : null,
+            referralSource: checkColumnVisible("referralSource") ? objectSearch.referralSource != "" ? objectSearch.referralSource : null : null,
+            notary: checkColumnVisible("notary") ? objectSearch.notary != "" ? objectSearch.notary : null : null,
+            secretary: checkColumnVisible("secretary") ? objectSearch.secretary != "" ? objectSearch.secretary : null : null,
+            createBy: checkColumnVisible("createBy") ? objectSearch.createBy != "" ? objectSearch.createBy : null : null,
+            customerName: checkColumnVisible("customerName") ? objectSearch.customerName != "" ? objectSearch.customerName : null : null,
+            scheduleStatusId: checkColumnVisible("scheduleStatus") ? objectSearch.scheduleStatusId != "" ? objectSearch.scheduleStatusId : null : null,
+            startDate: timeSearch.start != null ? timeSearch.start : null,
+            endDate: timeSearch.end != null ? timeSearch.end : null,
+            paging: false,
+            sortBy: sortField,
+            sortDirection: sortDirection
+        }).then(r => {
 
+            if (r.data.responses) {
+                let result = r.data.responses;
+
+                let feesNotary=0;
+                let feesTransportation=0;
+                let feesCopy=0;
+                let feesCollection=0;
+                for (let i = 0; i < result.length; i++) {
+                    let item = result[i]
+                    if(item.scheduleStatus!=null){
+                        if(item.scheduleStatus.code=="done"){
+                            feesNotary = feesNotary + item.feesNotary
+                            feesTransportation = feesTransportation + item.feesTransportation
+                            feesCopy = feesCopy + item.feesCopy
+                            feesCollection = feesCollection + item.feesCollection
+                        }
+                    }
+                }
+                setTotalExpense({
+                    feesCopy: feesCopy,
+                    feesTransportation: feesTransportation,
+                    feesNotary: feesNotary,
+                    feesCollection: feesCollection
+                })
+
+            } else {
+                setTotalExpense({
+                    feesCopy: 0,
+                    feesTransportation: 0,
+                    feesNotary: 0,
+                    feesCollection: 0
+                })
+            }
+            setLoading(false)
+        }).catch(e => {
+            toast.error("Có lỗi xảy ra")
+            setLoading(false)
+        })
 
     }
 
@@ -241,6 +310,9 @@ export default function SchedulePage(props) {
         })
         getCategoryApi({paging: false, type: "DocumentType"}).then((r) => {
             setListDocumentType(convertToAutoComplete(r.data.responses, 'name'))
+        })
+        getCategoryApi({paging: false, type: "ReferralSource"}).then((r) => {
+            setListReferralSource(convertToAutoComplete(r.data.responses, 'name'))
         })
 
     }, [])
@@ -331,32 +403,7 @@ export default function SchedulePage(props) {
 
             )
         }
-        else if (code == "referralSource") {
-            return (
-                <TableCell className={"filter-table"} style={{minWidth: '150px', top: 41}}>
-                    <div>
-                        <TextField
-                            size={"small"}
-                            fullWidth
-                            value={objectSearch.referralSource}
-                            onChange={(e) => {
-                                setObjectSearch({...objectSearch, referralSource: e.target.value})
-                            }}
-                            onKeyDown={(event) => {
-                                if (event.key === 'Enter') {
-                                    submitSearch()
-                                }
-                            }}
-                            onBlur={(e) => {
-                                submitSearch()
-                            }}
-                        />
-                    </div>
 
-                </TableCell>
-
-            )
-        }
         else if (code == "customerName") {
             return (
                 <TableCell className={"filter-table"} style={{minWidth: '150px', top: 41}}>
@@ -435,6 +482,32 @@ export default function SchedulePage(props) {
 
             )
         }
+        else if (code == "certificateNumber") {
+            return (
+                <TableCell className={"filter-table"} style={{minWidth: '95px', maxWidth: '95px', top: 41}}>
+                    <div>
+                        <TextField
+                            size={"small"}
+                            fullWidth
+                            value={objectSearch.certificateNumber}
+                            onChange={(e) => {
+                                setObjectSearch({...objectSearch, certificateNumber: e.target.value})
+                            }}
+                            onKeyDown={(event) => {
+                                if (event.key === 'Enter') {
+                                    submitSearch()
+                                }
+                            }}
+                            onBlur={(e) => {
+                                submitSearch()
+                            }}
+                        />
+                    </div>
+
+                </TableCell>
+
+            )
+        }
         else if (code == "scheduleStatus") {
             return (
                 <TableCell className={"filter-table"} style={{minWidth: '150px', top: 41}}>
@@ -467,7 +540,41 @@ export default function SchedulePage(props) {
                 </TableCell>
 
             )
-        }else if (code == "documentType") {
+        }
+        else if (code == "referralSource") {
+            return (
+                <TableCell className={"filter-table"} style={{minWidth: '150px', top: 41}}>
+                    <Autocomplete
+                        // disablePortal
+                        id="combo-box-demo"
+                        options={listReferralSource}
+                        value={{
+                            id: objectSearch.referralSourceId,
+                            label: objectSearch.referralSourceName
+                        }
+                        }
+
+                        renderInput={(params) => < TextField  {...params}
+                                                              id='referralSourceId'
+                                                              name='referralSourceId'
+                                                              placeholder=""
+                        />}
+                        size={"small"}
+                        onChange={(event, newValue) => {
+                            if (newValue) {
+                                setObjectSearch({...objectSearch, referralSourceId: newValue.id, referralSourceName: newValue.label})
+
+                            } else {
+                                setObjectSearch({...objectSearch, referralSourceId: '', referralSourceName: ''})
+                            }
+                        }}
+                    />
+
+                </TableCell>
+
+            )
+        }
+        else if (code == "documentType") {
             return (
                 <TableCell className={"filter-table"} style={{minWidth: '150px', top: 41}}>
                     <Autocomplete
@@ -701,7 +808,7 @@ export default function SchedulePage(props) {
                                                Phí công chứng:&ensp;
                                             </div>
                                             <div className={'sum-table-amount'}>
-                                                {currencyFormatter(3000000)}&ensp;VNĐ
+                                                {currencyFormatter(totalExpense.feesNotary)}&ensp;VNĐ
                                             </div>
                                         </div>
                                         <div className={'flex'}>
@@ -709,7 +816,7 @@ export default function SchedulePage(props) {
                                                 Phí sao y:&ensp;
                                             </div>
                                             <div className={'sum-table-amount'}>
-                                                {currencyFormatter(0)}&ensp;VNĐ
+                                                {currencyFormatter(totalExpense.feesCopy)}&ensp;VNĐ
                                             </div>
                                         </div>
                                         <div className={'flex'}>
@@ -717,14 +824,14 @@ export default function SchedulePage(props) {
                                                 Phí di chuyển:&ensp;
                                             </div>
                                             <div className={'sum-table-amount'}>
-                                                {currencyFormatter(0)}&ensp;VNĐ
+                                                {currencyFormatter(totalExpense.feesTransportation)}&ensp;VNĐ
                                             </div>
                                         </div>    <div className={'flex'}>
                                             <div className={'sum-table-label'}>
                                                 Phí thu hộ:&ensp;
                                             </div>
                                             <div className={'sum-table-amount'}>
-                                                {currencyFormatter(0)}&ensp;VNĐ
+                                                {currencyFormatter(totalExpense.feesCollection)}&ensp;VNĐ
                                             </div>
                                         </div>
 

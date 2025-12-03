@@ -165,6 +165,21 @@ export default function Nav() {
                                     </NavLink> : ''
                                 }
                             </ul>
+                            <ul style={{padding: '0px 20px'}}>
+                                {currentUser.roles.includes('view_category') ?
+                                    <NavLink className={'nav-link'} to={'referral-source'}
+                                             onClick={isMobile ? touchMenu : ''}>
+                                        <li>
+                                            <div className={'nav-item li-child'}>
+                                                <div className={'nav-item-name'}>
+                                                    <ClassIcon></ClassIcon>
+                                                    {getTitleFromCodeCategory("ReferralSource")}
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </NavLink> : ''
+                                }
+                            </ul>
 
 
                         </Collapse>

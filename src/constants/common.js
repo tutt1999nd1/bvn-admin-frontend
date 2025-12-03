@@ -135,14 +135,16 @@ export const getDefaultConfigTable = (tableName) => {
             {index:1,name:"Thư ký",code:"secretary",visible:true},
             {index:1,name:"Nguồn việc",code:"referralSource",visible:true},
             {index:1,name:"Trạng thái",code:"scheduleStatus",visible:true},
-            {index:1,name:"Số công chứng",code:"scheduleStatus",visible:true},
-            {index:1,name:"Địa chỉ",code:"address",visible:true},
-            {index:1,name:"Thông tin liên hệ",code:"contact",visible:true},
+            {index:1,name:"Số công chứng",code:"certificateNumber",visible:true},
+            {index:1,name:"Loại việc",code:"documentType",visible:true},
+
+            {index:1,name:"Địa chỉ",code:"address",visible:false},
+            {index:1,name:"Thông tin liên hệ",code:"contact",visible:false},
             {index:1,name:"Phí công chứng",code:"feesNotary",visible:true},
             {index:1,name:"Phí di chuyển",code:"feesTransportation",visible:true},
             {index:1,name:"Phí sao y",code:"feesCopy",visible:true},
             {index:1,name:"Phí thu hộ",code:"feesCollection",visible:true},
-            {index:1,name:"Loại việc",code:"documentType",visible:true},
+            {index:1,name:"Đã nộp",code:"isPaid",visible:true},
             {index:1,name:"Ghi chú",code:"description",visible:true},
         ]
         return columns;

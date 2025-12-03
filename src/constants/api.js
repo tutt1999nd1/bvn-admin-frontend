@@ -1,7 +1,7 @@
-export const API_DOMAIN = 'http://localhost:8443/';
-export const DOMAIN = 'http://localhost:3000/';
-// export const DOMAIN = 'https://fleet.aceoffice.vn/';
-// export const API_DOMAIN = 'https://fleet.aceoffice.vn/api/';
+// export const API_DOMAIN = 'http://localhost:8443/';
+// export const DOMAIN = 'http://localhost:3000/';
+export const DOMAIN = 'https://bvn-admin.aceoffice.vn/';
+export const API_DOMAIN = 'https://bvn-admin.aceoffice.vn/api/';
 const API_MAP = {
     LOGIN: API_DOMAIN + 'auth/login',
     REFRESH_TOKEN: API_DOMAIN + 'auth/refresh-token',

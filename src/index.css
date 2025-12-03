@@ -1969,7 +1969,7 @@ div[role=dialog] button#outlined-success {
     padding:0.5rem 0
 }
 .item-dashboard{
-    height: 140px;
+    /*height: 140px;*/
 }
 .item-dashboard-wellcome{
     padding-left: 25px;
@@ -2014,6 +2014,10 @@ div[role=dialog] button#outlined-success {
     padding-left: 6px;
     background-color: #ff8956;
 }
+.feesCollection{
+    padding-left: 6px;
+    background-color: #848dff;
+}
 .item-dashboard-tittle{
     font-size: 16px;
     font-weight: 700;
@@ -2039,7 +2043,7 @@ div[role=dialog] button#outlined-success {
     margin-right: 7px;
 }
 .item-dashboard-employee .item-dashboard-tittle,.item-dashboard-sum .item-dashboard-tittle{
-    color: black;
+    color: #1F2251;
 }
 .item-dashboard-span{
     font-size: 13px;
@@ -2057,6 +2061,8 @@ div[role=dialog] button#outlined-success {
     display:flex;
     align-items: center;
     padding: 10px;
+    justify-content: space-between;
+
 }
 .item-dashboard-employee-total .percent{
     display: flex;
@@ -2073,7 +2079,11 @@ div[role=dialog] button#outlined-success {
     color: #ff8d8d !important;
 }
 .item-dashboard-employee-total .total{
-    font-size: 32px;
+    font-size: 25px;
+}
+.item-dashboard-employee-total .symbol{
+    font-size: 20px;
+    color: #ff7337;
 }
 .item-dashboard-employee-total-pre{
     color: #65696C;
@@ -2142,6 +2152,7 @@ div[role=dialog] button#outlined-success {
     max-height:240px
 }
 .item-legend{
+    cursor: pointer;
     overflow: auto;
     margin-top: 5px;
     font-size:14px;
@@ -2809,4 +2820,36 @@ table .action{
 .sum-table .flex{
     align-items: flex-end;
     margin-right: 30px;
+}
+.dashboard-ec{
+    margin-top: 5px;
+}
+.dashboard-ec .item-dashboard{
+    height: unset;
+}
+.dashboard-ec .item-dashboard-sum-detail-row{
+    padding: 0 5px;
+}
+.dashboard-ec .table-container{
+    max-height: 350px;
+}
+.ec-row .item-dashboard-sum-detail-row{
+    padding: 5px;
+}
+.dashboard-ec .item-dashboard-pie-chart{
+    min-height: 306px;
+
+}
+.item-dashboard-employee{
+    /*background-color: #8cffbb !important*/
+}
+.item-dashboard-select .item-dashboard-employee:hover{
+    cursor: pointer;
+    background-color: #c4ffdc !important
+}
+.info-title{
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    color: #1F2251
 }
