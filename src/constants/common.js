@@ -128,7 +128,7 @@ export const getDefaultConfigTable = (tableName) => {
             // {index:1,name:"ID",code:"id",visible:false},
             {index:1,name:"Thời gian",code:"date",visible:true},
             // {index:1,name:"STT",code:"stt",visible:true},
-            {index:1,name:"Tên hồ sơ",code:"name",visible:true},
+            {index:1,name:"Tên khách hàng",code:"name",visible:true},
             {index:1,name:"Người tạo",code:"createBy",visible:true},
             // {index:1,name:"Khách hàng",code:"customerName",visible:true},
             {index:1,name:"Công chứng viên",code:"notary",visible:true},
@@ -137,14 +137,15 @@ export const getDefaultConfigTable = (tableName) => {
             {index:1,name:"Trạng thái",code:"scheduleStatus",visible:true},
             {index:1,name:"Số công chứng",code:"certificateNumber",visible:true},
             {index:1,name:"Loại việc",code:"documentType",visible:true},
-
-            {index:1,name:"Địa chỉ",code:"address",visible:false},
+            {index:1,name:"Địa điểm ký",code:"address",visible:false},
             {index:1,name:"Thông tin liên hệ",code:"contact",visible:false},
             {index:1,name:"Phí công chứng",code:"feesNotary",visible:true},
-            {index:1,name:"Phí di chuyển",code:"feesTransportation",visible:true},
+            {index:1,name:"Phí ký ngoài",code:"feesTransportation",visible:true},
             {index:1,name:"Phí sao y",code:"feesCopy",visible:true},
             {index:1,name:"Phí thu hộ",code:"feesCollection",visible:true},
-            {index:1,name:"Đã nộp",code:"isPaid",visible:true},
+            {index:1,name:"Khách đã nộp",code:"isPaid",visible:true},
+            {index:1,name:"Khách đã nộp",code:"isPaid",visible:true},
+            {index:1,name:"Đã bàn giao hồ sơ lưu cho văn thư",code:"isHandOver",visible:true},
             {index:1,name:"Ghi chú",code:"description",visible:true},
         ]
         return columns;

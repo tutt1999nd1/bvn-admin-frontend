@@ -221,7 +221,7 @@ export default function ModalDetail(props) {
                                         </Grid>
                                         <Grid item md={6}>
                                             <div className={'row-detail'}>
-                                                <div className={'row-detail-label'}>Địa chỉ:</div>
+                                                <div className={'row-detail-label'}>Địa điểm ký:</div>
                                                 <div className={'row-detail-info'}>
                                                     {info.address}
                                                 </div>

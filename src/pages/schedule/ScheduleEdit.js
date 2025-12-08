@@ -216,7 +216,7 @@ export default function ScheduleEdit(props) {
                                             <Grid container spacing={2}>
                                                 <Grid item md={6}>
                                                     <div className={'row-input'}>
-                                                        <div className={'label-input'}>Tên hồ sơ
+                                                        <div className={'label-input'}>Tên khách hàng
                                                             <span className={'error-message'}>*</span>
                                                         </div>
                                                         <div className={'row-input-field'}>
@@ -570,7 +570,7 @@ export default function ScheduleEdit(props) {
                                                 </Grid>
                                                 <Grid item md={6}>
                                                     <div className={'row-input'}>
-                                                        <div className={'label-input'}>Địa chỉ</div>
+                                                        <div className={'label-input'}>Địa điểm ký</div>
                                                         <div className={'row-input-field'}>
                                                             <TextField
                                                                 multiline={true}

@@ -25,7 +25,7 @@ export default function Login() {
     const dispatch = useDispatch();
     const [showPass, setShowPass] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [isLocal, setIsLocal] = useState(false);
+    const [isLocal, setIsLocal] = useState(true);
     const handleClickShowPass = () => setShowPass(!showPass);
     const [infoLogin, setInfoLogin] = useState({
         username: '',
@@ -106,7 +106,7 @@ export default function Login() {
                     return (
                         <Form onSubmit={handleSubmit}>
                             <div className="login-logo">
-                                <img src={require('../../../assets/img/new-logo.png')} alt="Logo"/>
+                                <img src={require('../../../assets/img/logotron.png')} alt="Logo"/>
                             </div>
                             {
                                 isLocal?   <div className={"login-title"}>
@@ -174,23 +174,7 @@ export default function Login() {
                             }
 
 
-                            <div className={'login-sso'} style={{borderTop:isLocal?"1px solid #f05b1d":"unset"}}>
-                                {/*<Driver></Driver>*/}
-                                {
-                                    isLocal?<div style={{textAlign:"center",marginBottom:"10px"}}> Hoặc đăng nhập bằng Email công ty</div>:""
-                                }
-                                <Button style={{width: "100%"}} className={'button-sso'} variant={"contained"} onClick={handleLoginSSO}
-                                        type={"button"}>
-                                    <img src={require('../../../assets/img/microsoft.png')} alt=""/>
-                                    Đăng nhập bằng email công ty
-                                </Button>
-                                {
-                                    !isLocal?          <div className={'login-local'} onClick={()=>{setIsLocal(true)}}>
-                                        Đăng nhập bằng tài khoản hệ thống
-                                    </div>:""
-                                }
 
-                            </div>
 
 
                         </Form>

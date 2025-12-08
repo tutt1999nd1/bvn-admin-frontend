@@ -161,7 +161,34 @@ export default function SchedulePage(props) {
     }, [objectSearch.scheduleStatusId,objectSearch.documentTypeId,objectSearch.referralSourceId, isRefresh])
 
 
-
+    const exportExcel = () => {
+        setLoadingExport(true)
+        Axios.post(API_MAP.SCHEDULE_EXPORT, {
+            id: checkColumnVisible("id") ? objectSearch.id != "" ? objectSearch.id : null : null,
+            certificateNumber: checkColumnVisible("certificateNumber") ? objectSearch.certificateNumber != "" ? objectSearch.certificateNumber : null : null,
+            name: checkColumnVisible("name") ? objectSearch.name != "" ? objectSearch.name : null : null,
+            notary: checkColumnVisible("notary") ? objectSearch.notary != "" ? objectSearch.notary : null : null,
+            secretary: checkColumnVisible("secretary") ? objectSearch.secretary != "" ? objectSearch.secretary : null : null,
+            createBy: checkColumnVisible("createBy") ? objectSearch.createBy != "" ? objectSearch.createBy : null : null,
+            customerName: checkColumnVisible("customerName") ? objectSearch.customerName != "" ? objectSearch.customerName : null : null,
+            scheduleStatusId: checkColumnVisible("scheduleStatus") ? objectSearch.scheduleStatusId != "" ? objectSearch.scheduleStatusId : null : null,
+            documentTypeId: checkColumnVisible("documentType") ? objectSearch.documentTypeId != "" ? objectSearch.documentTypeId : null : null,
+            referralSource: checkColumnVisible("referralSource") ? objectSearch.referralSourceId != "" ? objectSearch.referralSourceId : null : null,
+            startDate: timeSearch.start != null ? timeSearch.start : null,
+            endDate: timeSearch.end != null ? timeSearch.end : null,
+            paging: false,
+        }, {
+            headers: {'Authorization': `Bearer ${currentUser.accessToken}`},
+            responseType: 'blob'
+        }).then(response => {
+            // setLoadingExport(false)
+            let nameFile = response.headers['content-disposition'].split(`"`)[1]
+            FileDownload(response.data, nameFile);
+            setLoadingExport(false)
+        }).catch(e => {
+            setLoadingExport(false)
+        })
+    }
     useEffect(() => {
         if (!isInitialRender) {
             submitSearch();
@@ -843,7 +870,7 @@ export default function SchedulePage(props) {
                                             <div>
                                                 <Button onClick={()=>{
                                                     if(!loadingExport){
-                                                        // exportExcel()
+                                                        exportExcel()
                                                     }}
                                                 } style={{marginLeft: '10px', marginRight: '10px'}}
                                                         variant="outlined"

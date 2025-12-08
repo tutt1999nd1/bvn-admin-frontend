@@ -68,7 +68,7 @@ export default function Nav() {
             <div className={'navbarBox__main'}>
                 <div className={'logo'}>
                     <a href={'#'}><img style={{width: '100%'}}
-                                       src={require('../assets/img/logo-white.png')}/></a>
+                                       src={require('../assets/img/logodai.png')}/></a>
                     <button onClick={touchMenu}>
                         <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
                              class="svg1">

@@ -368,7 +368,7 @@ export default function DashboardPage() {
                                 <div className={'item-dashboard-wellcome'}>
                                     <div style={{marginRight: '10px'}}>
                                         <img style={{width: '200px'}}
-                                             src={require('../../assets/img/logo-white.png')}/>
+                                             src={require('../../assets/img/logodai.png')}/>
                                     </div>
                                     <div>
                                         <div className={'item-dashboard-tittle'}>Xin
