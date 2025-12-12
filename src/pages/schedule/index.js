@@ -866,7 +866,7 @@ export default function SchedulePage(props) {
                                 </div>
                                 <div style={{display:'flex',alignItems:'center'}}>
                                     {
-                                        currentUser.roles.includes("create_schedule") ?
+                                        currentUser.roles.includes("manage_schedule_view") ?
                                             <div>
                                                 <Button onClick={()=>{
                                                     if(!loadingExport){
@@ -878,7 +878,7 @@ export default function SchedulePage(props) {
                                             </div>
                                             : ""
                                     }
-                                    {           currentUser.roles.includes("create_schedule") ?
+                                    {           currentUser.roles.includes("manage_schedule_create") ?
                                                         <Button style={{marginRight: "5px"}} onClick={() => {
                                                             navigate(`${pathname}/create`)
                                                         }} variant={'outlined'}>Thêm mới</Button> : ""
@@ -1113,7 +1113,7 @@ export default function SchedulePage(props) {
 
 
                                                                     {
-                                                                        currentUser.roles.includes('update_schedule') ?
+                                                                        currentUser.roles.includes('manage_schedule_update') ?
 
                                                                             <Tooltip arrow disableInteractive
                                                                                      placement="right-start"
@@ -1125,7 +1125,7 @@ export default function SchedulePage(props) {
                                                                             </Tooltip> : ""
                                                                     }
                                                                     {
-                                                                        currentUser.roles.includes('delete_schedule') ?
+                                                                        currentUser.roles.includes('manage_schedule_delete') ?
                                                                             <Tooltip arrow disableInteractive
                                                                                      placement="right-start"
                                                                                      title={"Xóa"}>

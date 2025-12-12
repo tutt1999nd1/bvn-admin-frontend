@@ -59,7 +59,7 @@ export default function RenderRoute() {
                 <Navigate to={`login?redirect=${location.pathname + location.search}`}/>}>
 
                 <Route path="dashboard" element={
-                    <PrivateRoutes role={'view_dashboard'}>
+                    <PrivateRoutes role={'dashboard_view'}>
                         <DashboardPage/>
                     </PrivateRoutes>
                 }/>
@@ -148,12 +148,12 @@ export default function RenderRoute() {
                     </PrivateRoutes>
                 }/>
                 <Route path="/document-group/create" element={
-                    <PrivateRoutes role={'view_category'}>
+                    <PrivateRoutes role={'create_category'}>
                         <CategoryEdit type="DocumentGroup" isUpdate={false}/>
                     </PrivateRoutes>
                 }/>
                 <Route path="/document-group/update" element={
-                    <PrivateRoutes role={'view_category'}>
+                    <PrivateRoutes role={'edit_category'}>
                         <CategoryEdit type="DocumentGroup" isUpdate={true}/>
                     </PrivateRoutes>
                 }/>
@@ -163,12 +163,12 @@ export default function RenderRoute() {
                     </PrivateRoutes>
                 }/>
                 <Route path="/document-type/create" element={
-                    <PrivateRoutes role={'view_category'}>
+                    <PrivateRoutes role={'create_category'}>
                         <CategoryEdit type="DocumentType" isUpdate={false}/>
                     </PrivateRoutes>
                 }/>
                 <Route path="/document-type/update" element={
-                    <PrivateRoutes role={'view_category'}>
+                    <PrivateRoutes role={'edit_category'}>
                         <CategoryEdit type="DocumentType" isUpdate={true}/>
                     </PrivateRoutes>
                 }/>
@@ -178,12 +178,12 @@ export default function RenderRoute() {
                     </PrivateRoutes>
                 }/>
                 <Route path="/schedule-status/create" element={
-                    <PrivateRoutes role={'view_category'}>
+                    <PrivateRoutes role={'create_category'}>
                         <CategoryEdit type="ScheduleStatus" isUpdate={false}/>
                     </PrivateRoutes>
                 }/>
                 <Route path="/schedule-status/update" element={
-                    <PrivateRoutes role={'view_category'}>
+                    <PrivateRoutes role={'edit_category'}>
                         <CategoryEdit type="ScheduleStatus" isUpdate={true}/>
                     </PrivateRoutes>
                 }/>
@@ -193,27 +193,27 @@ export default function RenderRoute() {
                     </PrivateRoutes>
                 }/>
                 <Route path="/referral-source/create" element={
-                    <PrivateRoutes role={'view_category'}>
+                    <PrivateRoutes role={'create_category'}>
                         <CategoryEdit type="ReferralSource" isUpdate={false}/>
                     </PrivateRoutes>
                 }/>
                 <Route path="/referral-source/update" element={
-                    <PrivateRoutes role={'view_category'}>
+                    <PrivateRoutes role={'edit_category'}>
                         <CategoryEdit type="ReferralSource" isUpdate={true}/>
                     </PrivateRoutes>
                 }/>
                 <Route path="/schedule" element={
-                    <PrivateRoutes role={'view_schedule'}>
+                    <PrivateRoutes role={'manage_schedule_view'}>
                         <SchedulePage/>
                     </PrivateRoutes>
                 }/>
                 <Route path="/schedule/create" element={
-                    <PrivateRoutes role={'create_schedule'}>
+                    <PrivateRoutes role={'manage_schedule_create'}>
                         <ScheduleEdit isUpdate={false}/>
                     </PrivateRoutes>
                 }/>
                 <Route path="/schedule/update" element={
-                    <PrivateRoutes role={'update_schedule'}>
+                    <PrivateRoutes role={'manage_schedule_update'}>
                         <ScheduleEdit isUpdate={true}/>
                     </PrivateRoutes>
                 }/>

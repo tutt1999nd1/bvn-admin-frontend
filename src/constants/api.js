@@ -1,7 +1,7 @@
-// export const API_DOMAIN = 'http://localhost:8443/';
-// export const DOMAIN = 'http://localhost:3000/';
-export const DOMAIN = 'https://bvn-admin.aceoffice.vn/';
-export const API_DOMAIN = 'https://bvn-admin.aceoffice.vn/api/';
+export const API_DOMAIN = 'http://localhost:8443/';
+export const DOMAIN = 'http://localhost:3000/';
+// export const DOMAIN = 'https://bvn-admin.aceoffice.vn/';
+// export const API_DOMAIN = 'https://bvn-admin.aceoffice.vn/api/';
 const API_MAP = {
     LOGIN: API_DOMAIN + 'auth/login',
     REFRESH_TOKEN: API_DOMAIN + 'auth/refresh-token',
@@ -62,12 +62,12 @@ const API_MAP = {
     UPDATE_PERMISSION:API_DOMAIN+"permission/update",
     DELETE_PERMISSION:API_DOMAIN+"permission/delete",
 
-    SCHEDULE_SEARCH:API_DOMAIN+"schedule/search",
-    SCHEDULE_GET_DETAIL:API_DOMAIN+"schedule/detail",
-    SCHEDULE_CREATE:API_DOMAIN+"schedule/create",
-    SCHEDULE_UPDATE:API_DOMAIN+"schedule/update",
-    SCHEDULE_DELETE:API_DOMAIN+"schedule/delete",
-    SCHEDULE_EXPORT:API_DOMAIN+"schedule/export",
+    SCHEDULE_SEARCH:API_DOMAIN+"manage-schedule/search",
+    SCHEDULE_GET_DETAIL:API_DOMAIN+"manage-schedule/detail",
+    SCHEDULE_CREATE:API_DOMAIN+"manage-schedule/create",
+    SCHEDULE_UPDATE:API_DOMAIN+"manage-schedule/update",
+    SCHEDULE_DELETE:API_DOMAIN+"manage-schedule/delete",
+    SCHEDULE_EXPORT:API_DOMAIN+"manage-schedule/export",
 
 }
 export default API_MAP;

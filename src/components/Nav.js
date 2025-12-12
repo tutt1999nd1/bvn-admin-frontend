@@ -82,7 +82,7 @@ export default function Nav() {
                 <div style={{marginTop: "10px"}}>
                     <ul>
                         {
-                            currentUser.roles.includes('view_dashboard') ?
+                            currentUser.roles.includes('dashboard_view') ?
                                 <NavLink className={'nav-link menu-parent'} isActive={true} to={'dashboard'}
                                          onClick={isMobile ? touchMenu : ''}>
                                     <li>
@@ -95,7 +95,7 @@ export default function Nav() {
                                 </NavLink> : ''
                         }
                         {
-                            currentUser.roles.includes('view_schedule') ?
+                            currentUser.roles.includes('manage_schedule_view') ?
                                 <NavLink className={'nav-link menu-parent'} isActive={true} to={'schedule'}
                                          onClick={isMobile ? touchMenu : ''}>
                                     <li>

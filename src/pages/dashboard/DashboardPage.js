@@ -25,8 +25,8 @@ export default function DashboardPage() {
     const [openModalProjectList, setOpenModalProjectList] = useState(false)
     const [openModalProjectListReport, setOpenModalProjectListReport] = useState(false)
     const [timeSearch, setTimeSearch] = useState({
-        start: (new dayjs()).startOf('week').add(1, "day"),
-        end: (new dayjs()).endOf('week').add(1, "day"),
+        start: (new dayjs()).startOf('month').add(1, "day"),
+        end: (new dayjs()).endOf('month').add(1, "day"),
     })
     const [isCurrentMonth, setIsCurrentMonth] = useState(false)
     const [isCurrentWeek, setIsCurrentWeek] = useState(true)
